@@ -3,7 +3,6 @@ import { useWindowSize } from '@react-hook/window-size'
 import './App.css'
 import Plot from 'react-plotly.js'
 import fetchContribution from './api/contribution'
-import { Card, CardHeader, CardContent, CardTitle, CardDescription } from './components/ui/card'
 
 function App() {
   const [width, height] = useWindowSize()
@@ -18,31 +17,28 @@ function App() {
             labels: data["labels"],
             parents: data["parents"],
             values: data["ContribRatio"],
-            // ids: data["Code"],
             marker: {
               coloraxis: "coloraxis",
               colors: data["ChangePct"],
             },
             // textinfo: "label+value",
-            texttemplate: "%{label}<br>%{customdata[5]}<br>%{customdata[1]:.2f}點<br>%{customdata[3]:t}(%{customdata[4]:t})<br>%{customdata[2]:.2f}%",
-            hovertemplate: "%{label}<br>貢獻點=%{customdata[1]:.2f}<br>漲跌幅=%{customdata[2]:.2f}%<br>現價=%{customdata[3]:t}<br>漲跌=%{customdata[4]:t}",
+            texttemplate: "%{label}<br>%{customdata[1]:.2f}點<br>%{customdata[3]:t}(%{customdata[4]:t})<br>%{customdata[2]:.2f}%",
+            hovertemplate: "%{label}<br>貢獻點=%{customdata[1]:.2f}<br>漲跌幅=%{customdata[2]:.2f}%<br>現價=%{customdata[3]:t}<br>漲跌=%{customdata[4]:t}<extra></extra>",
             domain: { "x": [0, 1], y: [0, 1] },
             // outsidetextfont: { "size": 20, "color": "#377eb8" },
             // marker: { "line": { "width": 2 } },
             customdata: customdata,
             branchvalues: "total",
             textposition: "middle center",
-            textfont: {
-              size: 24
-            },
-            // pathbar: { "visible": true }
+            textfont: { size: 24 },
+            // pathbar: { visible: true },
           },
         ]}
         layout={{
           width: width * 0.95,
           height: height * 0.95,
-          // legend: { tracegroupgap: 0 },
-          margin: { t: 0, b: 0, l: 0, r: 0 },
+          legend: { tracegroupgap: 0 },
+          margin: { t: 60, b: 0, l: 0, r: 0 },
           coloraxis: {
             cmid: 0,
             colorbar: {
